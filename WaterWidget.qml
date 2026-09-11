@@ -130,16 +130,16 @@ Item {
         ensureToday()
 
         var now = Date.now()
-        entries.push({
+        entries = entries.concat([{
             amountMl: amountMl,
             timestamp: now
-        })
+        }])
         totalMl += amountMl
         lastDrinkAt = now
         persist()
 
         if (totalMl >= goalMl)
-            sendNotification("Daily goal reached", "You reached " + formatLiters(totalMl) + " today. 󰆫")
+            sendNotification("Daily goal reached", "You reached " + formatLiters(totalMl) + " today. 󰖌")
     }
 
     function removeLastWater() {
@@ -148,7 +148,7 @@ Item {
 
         var last = entries[entries.length - 1]
         totalMl = Math.max(0, totalMl - Number(last.amountMl || 0))
-        entries.pop()
+        entries = entries.slice(0, -1)
         lastDrinkAt = entries.length > 0 ? Number(entries[entries.length - 1].timestamp || 0) : 0
         persist()
     }
@@ -174,7 +174,7 @@ Item {
         var elapsed = Date.now() - lastDrinkAt
         if (elapsed >= reminderMinutes * 60 * 1000) {
             sendNotification(
-                "Time to drink 󰆫",
+                "Time to drink 󰖌",
                 "You've gone " + Math.floor(elapsed / 60000) + " min without drinking water."
             )
             lastDrinkAt = Date.now()
@@ -224,9 +224,9 @@ Item {
 
         Text {
             anchors.centerIn: parent
-            text: "󰆫"
+            text: "󰖌"
             font.family: bar.fontFamily
-            font.pixelSize: Math.max(14, bar.barSize - 8)
+            font.pixelSize: Style.bar.iconFont
             color: totalMl >= goalMl ? bar.urgent : bar.foreground
         }
 
@@ -257,6 +257,8 @@ Item {
         height: content.implicitHeight + 24
         color: "transparent"
         visible: false
+        focusable: true
+        grabFocus: true
 
         Rectangle {
             anchors.fill: parent
@@ -460,6 +462,18 @@ Item {
                         color: Color.popups.text
                         font.family: bar.fontFamily
                         font.pixelSize: 11
+                    }
+
+                    Button {
+                        iconText: "󰆓"
+                        text: "Save"
+                        foreground: Color.popups.text
+                        fontFamily: bar.fontFamily
+                        bordered: true
+                        onClicked: {
+                            root.reminderMinutes = Number(reminderField.text)
+                            root.persist()
+                        }
                     }
 
                     Button {
