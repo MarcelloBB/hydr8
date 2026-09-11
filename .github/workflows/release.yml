@@ -1,0 +1,32 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # empacota apenas os arquivos que o widget precisa em runtime
+      - name: Package widget
+        run: |
+          zip -r "hydr8-${GITHUB_REF_NAME}.zip" \
+            manifest.json \
+            WaterWidget.qml \
+            README.md \
+            LICENSE
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: ${{ github.ref_name }}
+          generate_release_notes: true
+          files: hydr8-${{ github.ref_name }}.zip
