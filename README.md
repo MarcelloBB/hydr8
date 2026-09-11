@@ -1,22 +1,10 @@
-# hydr8
+## hydr8
 
 Hydration tracker and reminder widget for the Omarchy Shell bar.
 
-## Features
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/0c994400-3ff0-4624-9665-a664b7e1f6f6" />
 
-- Small icon in the top bar.
-- Tooltip with current consumption / goal.
-- Popup panel on click.
-- Quick logging of 150, 250, and 500 ml.
-- Undo the last entry.
-- Manual daily reset.
-- Persistence in `~/.local/share/hydr8/water.json`.
-- Configurable daily goal.
-- Configurable reminder interval.
-- Notifications via `notify-send`.
-- Automatic reset when the day changes.
-
-## Install
+### Install
 
 Copy this folder into your Omarchy plugins directory, matching the plugin id (`hydr8`):
 
@@ -46,7 +34,7 @@ or move it if it's already on the bar somewhere else:
 omarchy bar move hydr8 --section right
 ```
 
-## Validate
+### Validate
 
 From the plugin's folder:
 
@@ -76,7 +64,7 @@ You can also force a plugin rescan without a full restart:
 omarchy-shell shell rescanPlugins
 ```
 
-## Data
+### Data
 
 History is stored at:
 
@@ -86,7 +74,7 @@ History is stored at:
 
 The plugin does not send data anywhere over the network.
 
-## About notifications
+### About notifications
 
 The first version uses `notify-send`, which is simple and works with the
 Linux desktop notification system. If your installation doesn't have it
@@ -96,7 +84,7 @@ available:
 command -v notify-send
 ```
 
-## Requirements
+### Requirements
 
 - A Nerd Font that includes the Material Design Icons set (Omarchy's default,
   `JetBrainsMono Nerd Font`, already covers this) — the bar icon and popup
@@ -104,14 +92,3 @@ command -v notify-send
 - Runs only inside the Omarchy shell (Quickshell): the widget imports
   `qs.Commons` and `qs.Ui`, which resolve through the shell's own QML import
   path.
-
-## Possible future improvements
-
-- Daily/weekly history.
-- Hydration chart.
-- Custom quantity entry.
-- Goal calculation based on weight/routine.
-- Adaptive reminders.
-- Keyboard shortcuts.
-- Phone sync.
-- Different visual indicator depending on goal progress.
