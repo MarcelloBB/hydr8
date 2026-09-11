@@ -257,7 +257,6 @@ Item {
         height: content.implicitHeight + 24
         color: "transparent"
         visible: false
-        focusable: true
         grabFocus: true
 
         Rectangle {
