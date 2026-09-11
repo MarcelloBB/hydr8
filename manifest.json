@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "hydr8",
+  "name": "hydr8",
+  "version": "0.1.0",
+  "author": "Marcello",
+  "description": "minimal hydration tracker and reminder widget for omarchy.",
+  "kinds": [
+    "bar-widget"
+  ],
+  "entryPoints": {
+    "barWidget": "WaterWidget.qml"
+  },
+  "barWidget": {
+    "displayName": "hydr8",
+    "category": "Personal",
+    "defaultSection": "right",
+    "allowMultiple": false
+  }
+}
