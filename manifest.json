@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "hydr8",
   "name": "hydr8",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "Marcello",
   "description": "minimal hydration tracker and reminder widget for omarchy.",
   "kinds": [
